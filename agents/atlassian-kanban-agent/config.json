@@ -1,0 +1,56 @@
+{
+  "name": "backlog-agent",
+  "description": "An agent acting as a technical product manager responsible to maintain a Jira Kanban board",
+  "prompt": "file://./agent.md",
+  "mcpServers": {
+    "aws-mcp": {
+      "command": "uvx",
+      "args": [
+        "mcp-proxy-for-aws@latest",
+        "https://aws-mcp.us-east-1.api.aws/mcp",
+        "--metadata",
+        "AWS_REGION=eu-central-1"
+      ],
+      "disabled": false,
+      "autoApprove": ["aws___search_documentation", "aws___read_documentation"]
+    },
+    "atlassian": {
+      "url": "https://mcp.atlassian.com/v1/sse",
+      "disabled": false
+    }
+  },
+  "tools": [
+    "@builtin",
+    "@aws-mcp",
+    "@atlassian/addCommentToJiraIssue",
+    "@atlassian/atlassianUserInfo",
+    "@atlassian/createJiraIssue",
+    "@atlassian/editJiraIssue",
+    "@atlassian/fetch",
+    "@atlassian/getJiraIssue",
+    "@atlassian/lookupJiraAccountId",
+    "@atlassian/search",
+    "@atlassian/searchJiraIssuesUsingJql"
+  ],
+  "toolAliases": {
+    "@atlassian/addCommentToJiraIssue": "comment_issue",
+    "@atlassian/atlassianUserInfo": "atlassian_user",
+    "@atlassian/createJiraIssue": "create_issue",
+    "@atlassian/editJiraIssue": "edit_issue",
+    "@atlassian/fetch": "fetch_atlassian",
+    "@atlassian/getJiraIssue": "get_issue",
+    "@atlassian/lookupJiraAccountId": "jira_account",
+    "@atlassian/search": "search_jira",
+    "@atlassian/searchJiraIssuesUsingJql": "query_jira"
+  },
+  "resources": [
+    "file://.kiro/steering/product.md",
+    "file://.kiro/steering/structure.md",
+    "file://.kiro/steering/tech.md",
+    "file://README.md"
+  ],
+  "hooks": {},
+  "toolsSettings": {},
+  "useLegacyMcpJson": false,
+  "model": null
+}
